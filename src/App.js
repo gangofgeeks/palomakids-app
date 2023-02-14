@@ -43,6 +43,7 @@ function App() {
   
     return (
       <div className="App">
+      <img src={require('./basketball.jpg')} width="40%"/>
      
       <MaterialTable  columns={columns} data={res} enableColumnActions={false}
       enableColumnFilters={false}
@@ -55,9 +56,14 @@ function App() {
         pageSize:6,       // make initial page size
         emptyRowsWhenPaging: false,   // To avoid of having empty rows
         pageSizeOptions:[6,12,20,50],    // rows selection options
+        headerStyle: { color: 'blue' } ,
+        titleStyle: { color: 'orange' } ,
+
+
       }}
       muiTableBodyRowProps={{ hover: false }} title='Basketball Lessons Schedule' />
-    </div>
+      </div>
+    
     );
   }
 
