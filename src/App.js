@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useState, useEffect} from 'react';
 import axios from 'axios';
-import MaterialTable from 'material-table';
+import MaterialTable from '@material-table/core';
 
 function App() {
   const [res, setRes] = useState([]);
