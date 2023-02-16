@@ -211,7 +211,7 @@ function App() {
             const names=rowData.childrenNames.S.split(',');
             for (var i = 0; i < names.length; i++) {
               if(names[i] != selectedName && names[i].length>1){
-                toAdd= '\"' + names[i] + '\"'+',';
+                toAdd=  names[i] + ',';
               }
             }
     
@@ -349,7 +349,7 @@ function App() {
       muiTableBodyRowProps={{ hover: false }} title='Basketball Lessons Schedule' />
 
       <div>
-      <p>Coach - Contact Number</p>
+      <p>Coach Name - Schwan Humes, Contact Number - 830-714-3486(For Zelle)</p>
       </div>
      
       </div>
