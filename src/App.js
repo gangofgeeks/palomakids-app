@@ -347,6 +347,10 @@ function App() {
 
       }}
       muiTableBodyRowProps={{ hover: false }} title='Basketball Lessons Schedule' />
+
+      <div>
+      <p>Coach - Contact Number</p>
+      </div>
      
       </div>
     
