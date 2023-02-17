@@ -16,7 +16,7 @@ function App({ signOut, user }) {
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState([]);
   const [slots, setSlots] = useState([]);
-   const [selectedName, setSelectedName] = useState([]);
+   
    const [rowData, setRowData] = useState([]);
 
    const [modalInput, setModalInput] = useState({
@@ -25,11 +25,37 @@ function App({ signOut, user }) {
    
    });
 
-   const childrenNames = [
-  { value: 'Dia Sharma', label: 'Dia' },
-  { value: 'Ishaan', label: 'Ishaan' },
-  { value: 'Malav Srivastava', label: 'Malav' }
-]
+   const malav = [
+    {value: 'Malav Srivastava',    text: 'Malav'   }
+   
+];
+const dia = [
+    {value: 'Dia Sharma',    text: 'Dia'   }
+   
+];
+
+const myra = [
+    {value: 'Myra Singhal',    text: 'Myra'   }
+   
+];
+const sumay = [
+    {value: 'Sumay',    text: 'Sumay'   }
+   
+];
+const shivansh = [
+    {value: 'Shivansh',    text: 'Shivansh Pawar'   }
+   
+];
+
+   const childrenParent = new Map();
+   
+   childrenParent.set("goyalmeghs01@gmail.com",myra);
+   childrenParent.set("mohitsrivastava12@yahoo.co.in",malav);
+   childrenParent.set("mayank.kaushal123@gmail.com",sumay);
+   childrenParent.set("swapnilpawar.ibm@gmail.com",shivansh);
+   
+
+const [selectedName, setSelectedName] = useState([]);
 
   const columns = [
     { title: 'Date', field: 'dateOfEvent.S', },
@@ -57,6 +83,7 @@ function App({ signOut, user }) {
   }
 
   const fetchData = () => {
+    console.log("The seleted one:"+selectedName);
     const api = 'https://7yr0xfh2j5.execute-api.us-east-2.amazonaws.com/beta';
     const data = { "name" : "Mike" };
     axios
@@ -293,8 +320,12 @@ const closeModal=()=> {
 
 
     useEffect(() => {
+      
     fetchData();
     fetchSlots();
+    if(childrenParent.get(user.attributes.email) !=undefined){
+     setSelectedName(childrenParent.get(user.attributes.email)[0].value);
+    }
     res.sort((a, b) => a.day.S - b.day.S)
   }, []);
 
@@ -327,7 +358,7 @@ const closeModal=()=> {
       <p>{success}</p>
     </div>
 
-    <div align="center">
+    <div align="center" >
          <button onClick={() => markPaid(rowData)}>Mark Slot as paid</button>
           </div>
           <br/>
@@ -376,6 +407,18 @@ const closeModal=()=> {
       <p>{success}</p>
     </div>
     <div style={{align: 'center'} }>
+    <h1>Hello {user.attributes.name}</h1>
+    <div>
+    {childrenParent.get(user.attributes.email) ?
+       
+          <label>
+            Your enrolled child's name: <span style={{color:"darkorange"}}>{selectedName}</span>
+                     </label>
+        
+      
+
+
+      : 
             <select style={{color: 'blue'} }onChange={(e:Event) => handleChange(e)}>
             <option value="">Select your child name</option>
             <option value="Dia Sharma">Dia</option>
@@ -386,12 +429,15 @@ const closeModal=()=> {
   <option value="Rohin Singhal">Rohin</option>
   <option value="Shivansh Pawar">Shivansh</option>
   <option value="Sumay">Sumay</option>
-
+  </select>
   
+}
+
+  </div>
   
   
    
-</select>
+
           
       </div>
     
