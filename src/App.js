@@ -403,8 +403,8 @@ const closeModal=()=> {
         emptyRowsWhenPaging: false,   // To avoid of having empty rows
         pageSizeOptions:[6,12,20,50],    // rows selection options
         headerStyle: { color: 'blue' } ,
-        titleStyle: { color: 'orange' } ,
-        tableLayout:"fixed"
+        titleStyle: { color: 'orange' } 
+
 
       }}
       muiTableBodyRowProps={{ hover: false }} title='Basketball Lessons Schedule' />
