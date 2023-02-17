@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyf5e31be6d3644-staging-52006-authRole",
+      "UnauthRoleArn": "arn:aws:iam::242162320156:role/amplify-amplifyf5e31be6d3644-staging-52006-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::242162320156:role/amplify-amplifyf5e31be6d3644-staging-52006-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplifyf5e31be6d3644-staging-52006-deployment",
+      "UnauthRoleName": "amplify-amplifyf5e31be6d3644-staging-52006-unauthRole",
+      "StackName": "amplify-amplifyf5e31be6d3644-staging-52006",
+      "StackId": "arn:aws:cloudformation:us-east-2:242162320156:stack/amplify-amplifyf5e31be6d3644-staging-52006/bd8c6670-ae82-11ed-b3ae-02a47ca5955c",
+      "AmplifyAppId": "d2g1ychpf5wwsz"
+    },
+    "categories": {
+      "auth": {
+        "palomakidsapp": {}
+      }
+    }
+  }
+}
