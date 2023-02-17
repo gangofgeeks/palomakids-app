@@ -66,7 +66,7 @@ const [selectedName, setSelectedName] = useState([]);
     editable: false,
     render: (rowData) =>
         (
-        <button onClick={() => handleDialogOpen(rowData)}>Manage</button>
+        <button disabled={selectedName.length === undefined || selectedName.length<2} onClick={() => handleDialogOpen(rowData)}>Manage</button>
         )
     },
     { title: 'Time', field: 'timeOfEvent.S' },
@@ -419,17 +419,7 @@ const closeModal=()=> {
 
 
       : 
-            <select style={{color: 'blue'} }onChange={(e:Event) => handleChange(e)}>
-            <option value="">Select your child name</option>
-            <option value="Dia Sharma">Dia</option>
-            <option value="Dhanvi Desai">Dhanvi</option>
-            <option value="Ishaan">Ishaan</option>
-  <option value="Malav Srivastava">Malav</option>
-  <option value="Myra Singhal">Myra</option>
-  <option value="Rohin Singhal">Rohin</option>
-  <option value="Shivansh Pawar">Shivansh</option>
-  <option value="Sumay">Sumay</option>
-  </select>
+            <label style={{color:"orange"}}> Your email is not associated with any enrolled kid </label>
   
 }
 
