@@ -29,11 +29,6 @@ function App() {
   const columns = [
     { title: 'Date', field: 'dateOfEvent.S', },
     { title: 'Day', field: 'day.S', },
-
-    { title: 'Time', field: 'timeOfEvent.S' },
-    { title: 'Names', field: 'childrenNames.S' },
-    { title: 'Already Paid', field: 'paidNames.S' },
-
     {
     title: "Manage",
     field: "open_modal",
@@ -42,7 +37,12 @@ function App() {
         (
         <button onClick={() => handleDialogOpen(rowData)}>Manage</button>
         )
-    }
+    },
+    { title: 'Time', field: 'timeOfEvent.S' },
+    { title: 'Names', field: 'childrenNames.S' },
+    { title: 'Already Paid', field: 'paidNames.S' },
+
+    
     
   ];
 
@@ -403,8 +403,8 @@ const closeModal=()=> {
         emptyRowsWhenPaging: false,   // To avoid of having empty rows
         pageSizeOptions:[6,12,20,50],    // rows selection options
         headerStyle: { color: 'blue' } ,
-        titleStyle: { color: 'orange' } 
-
+        titleStyle: { color: 'orange' } ,
+        tableLayout:"fixed"
 
       }}
       muiTableBodyRowProps={{ hover: false }} title='Basketball Lessons Schedule' />
