@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { useState, useEffect} from 'react';
+import Modal from 'react-modal';
 import axios from 'axios';
 import MaterialTable from '@material-table/core';
 
@@ -11,6 +12,13 @@ function App() {
   const [success, setSuccess] = useState([]);
   const [slots, setSlots] = useState([]);
    const [selectedName, setSelectedName] = useState([]);
+   const [rowData, setRowData] = useState([]);
+
+   const [modalInput, setModalInput] = useState({
+       isOpen:false,
+       date:''
+   
+   });
 
    const childrenNames = [
   { value: 'Dia Sharma', label: 'Dia' },
@@ -26,41 +34,16 @@ function App() {
     { title: 'Names', field: 'childrenNames.S' },
     { title: 'Already Paid', field: 'paidNames.S' },
 
-    
-     {
-    title: "Custom Add",
-    field: "internal_action",
-    editable: false,
-    render: (rowData) =>
-        (
-        <button
-            color="secondary"
-            onClick={() => addData(rowData)}   > Add Me    </button>
-        )
-    },
-
     {
-    title: "Custom Remove",
-    field: "remove",
+    title: "Manage",
+    field: "open_modal",
     editable: false,
     render: (rowData) =>
         (
-        <button
-            color="secondary"
-            onClick={() => removeData(rowData)}   > Remove Me    </button>
-        )
-    },
-    {
-    title: "Payment",
-    field: "paid",
-    editable: false,
-    render: (rowData) =>
-        (
-        <button
-            color="secondary"
-            onClick={() => markPaid(rowData)}   > Mark as Paid</button>
+        <button onClick={() => handleDialogOpen(rowData)}>Manage</button>
         )
     }
+    
   ];
 
   const handleChange=(event)=>{
@@ -112,7 +95,7 @@ function App() {
         
         else{
           console.log("All Added"+rowData.childrenNames.S+','+selectedName);
-          toAdd=rowData.childrenNames.S+','+selectedName;
+          toAdd=rowData.childrenNames.S+', '+selectedName;
 
         }
 
@@ -156,7 +139,8 @@ function App() {
             setError("No payment needed, you were not in the slot:"+selectedName);
             return;
         }
-        else if(rowData.paidNames=== undefined || rowData.paidNames.S === undefined){
+        else if(rowData.paidNames=== undefined || rowData.paidNames.S === undefined || 
+          rowData.paidNames.S.length < 2){
           console.log("Selected name is:"+selectedName);
           toAdd=selectedName;
         }
@@ -169,7 +153,7 @@ function App() {
         }
         
         else{
-          console.log("All Added"+rowData.paidNames.S+','+selectedName);
+          console.log("All Added"+rowData.paidNames.S+', '+selectedName);
           toAdd=rowData.paidNames.S+','+selectedName;
 
         }
@@ -190,7 +174,9 @@ function App() {
 
 
 
-
+const closeModal=()=> {
+      setModalInput({isOpen:false});
+  }
 
     const removeData = (rowData) => {
         console.log(rowData.dateOfEvent.S);
@@ -211,7 +197,7 @@ function App() {
             const names=rowData.childrenNames.S.split(',');
             for (var i = 0; i < names.length; i++) {
               if(names[i] != selectedName && names[i].length>1){
-                toAdd=  names[i] + ',';
+                toAdd=  names[i] + ', ';
               }
             }
     
@@ -238,7 +224,21 @@ function App() {
 
 
 
-
+      const handleDialogOpen = (rowData) => {
+        if(selectedName === undefined || selectedName.length<2){
+          setError("Please select your child's name here");
+          return;
+        }
+        setError('');
+        setSuccess('');
+        setRowData(rowData);
+    setModalInput({isOpen: true, date: rowData.dateOfEvent.S,
+      day:rowData.day.S,
+      time:rowData.timeOfEvent.S,
+      names:rowData.childrenNames.S,
+      paidNames:rowData.paidNames.S,
+    });
+};
      const addToSlot = (data, message) => {
     const api = 'https://o6cja6tpcl.execute-api.us-east-2.amazonaws.com/beta';
     
@@ -255,7 +255,7 @@ function App() {
         fetchSlots();
         setError('');
         setSuccess(message);
-
+        closeModal();
         
       })
       .catch((error) => {
@@ -296,7 +296,69 @@ function App() {
 
   
     return (
-      <div className="App">
+
+       
+
+      <div className="App" id="screenFiller">
+
+     <Modal
+        isOpen={modalInput.isOpen}
+        rowData={rowData}
+        onRequestClose={closeModal}
+        
+        contentLabel="Manage kid for a slot"
+      >
+      <div align="center">
+        <h2 style={{color:"orange"}}>Lesson on {modalInput.date},{modalInput.day} at {modalInput.time}</h2>
+
+        
+        <div style={{color: 'red'}}>
+      
+      <p>{error}</p>
+    </div>
+
+      <div style={{color: 'green'}}>
+      
+      <p>{success}</p>
+    </div>
+
+    <div align="center">
+         <button onClick={() => markPaid(rowData)}>Mark Slot as paid</button>
+          </div>
+          <br/>
+
+          <img src={require('./people.png')}/>
+
+    <table><tbody><tr>
+        <td style={{color:"blue"}}>Child Name</td> <td> {selectedName}</td>
+        </tr>
+          <br/>
+        <tr>
+        <td style={{color:"blue"}}>Children in slot </td> <td>{modalInput.names}</td>
+        </tr>
+        <br/>
+        <tr rowSpan="2">
+        <td style={{color:"blue"}}>Slot Payent Done</td> <td>{modalInput.paidNames}</td>
+        </tr>
+        
+         <br/>
+         <br/>
+
+          <tr rowSpan="2">
+          <td style={{color:"green"}}><button style={{color:"green"}} onClick={() => addData(rowData)}>Add to Slot</button></td>
+          <td style={{color:"red"}}><button style={{color:"red"}} onClick={() => removeData(rowData)}>Remove from Slot</button></td>
+          </tr>
+          <br/>
+         
+         
+          </tbody>
+          </table>
+          <div align="center">
+          <button onClick={closeModal}>close</button>
+          </div>
+        </div>
+      </Modal>
+
       <img src={require('./basketball.jpg')} width="40%"/>
 
             <div style={{color: 'red'}}>
@@ -330,10 +392,9 @@ function App() {
     
      
 
-      <MaterialTable  columns={columns} data={slots} enableColumnActions={false}
+      <MaterialTable columns={columns} data={slots} enableColumnActions={false}
       enableColumnFilters={false}
-      enablePagination={false}
-      enableSorting={false}
+      
       enableBottomToolbar={false}
       enableTopToolbar={false}
       options={{
@@ -342,7 +403,7 @@ function App() {
         emptyRowsWhenPaging: false,   // To avoid of having empty rows
         pageSizeOptions:[6,12,20,50],    // rows selection options
         headerStyle: { color: 'blue' } ,
-        titleStyle: { color: 'orange' } ,
+        titleStyle: { color: 'orange' } 
 
 
       }}
