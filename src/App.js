@@ -43,7 +43,7 @@ const sumay = [
    
 ];
 const shivansh = [
-    {value: 'Shivansh',    text: 'Shivansh Pawar'   }
+    {value: 'Shivansh Pawar',    text: 'Shivansh'   }
    
 ];
 
