@@ -3,9 +3,14 @@ import { useState, useEffect} from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import MaterialTable from '@material-table/core';
+import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
 
 
-function App() {
+function App({ signOut, user }) {
   
   const [res, setRes] = useState([]);
   const [error, setError] = useState([]);
@@ -418,4 +423,4 @@ const closeModal=()=> {
     );
   }
 
-export default App;
+export default withAuthenticator(App);
