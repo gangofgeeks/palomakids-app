@@ -153,7 +153,7 @@ const [selectedName, setSelectedName] = useState([]);
         
         else{
           console.log("All Added"+rowData.childrenNames.S+','+selectedName);
-          toAdd=rowData.childrenNames.S+', '+selectedName;
+          toAdd=rowData.childrenNames.S+','+selectedName;
 
         }
 
