@@ -402,6 +402,10 @@ const closeModal=()=> {
         <td style={{color:"blue"}}>Child Name</td> <td> {selectedName}</td>
         </tr>
           <br/>
+          <tr>
+        <td style={{color:"blue"}}>Payment for slot </td> <td>{modalInput.names && 
+          modalInput.names.split(',').length>3 ?'$15':'$20'}</td>
+        </tr>
         <tr>
         <td style={{color:"blue"}}>Children in slot </td> <td>{modalInput.names}</td>
         </tr>
