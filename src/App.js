@@ -142,6 +142,11 @@ const [selectedName, setSelectedName] = useState([]);
           console.log("Selected name is:"+selectedName);
           toAdd=selectedName;
         }
+        else if((rowData.childrenNames.S).split(',').length>3){
+            setSuccess('');
+          setError("All 4 slots already booked.");
+          return;
+        }
         else if((rowData.childrenNames.S).includes(selectedName)){
             console.log("Already added:"+selectedName);
             toAdd=selectedName;
