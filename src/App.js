@@ -434,10 +434,10 @@ const closeModal=()=> {
 
        
       <div>
-      <table><tr><td width="20px">
-    <img src={require('./basketball.jpg')} width="250px"/></td>
+      <table><tr><td>
+    <img width="100px"   src={require('./basketball.jpg')} /></td>
       <td><span><p align="center" style={{color:"darkorange"}}>
-      Coach Name : Schwan Humes,   Contact Number(For Zelle) : 830-714-3486</p> </span> </td>
+      Coach Name : Schwan Humes,   Contact(For Zelle) : 830-714-3486</p> </span> </td>
       </tr>
       </table>
       </div>
