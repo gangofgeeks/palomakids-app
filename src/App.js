@@ -32,7 +32,7 @@ function App({ signOut, user }) {
    
 ];
 const dia = [
-    {value: 'Dia Sharma',    text: 'Dia'   }
+    {value: 'Diya Sharma',    text: 'Diya'   }
    
 ];
 
@@ -72,13 +72,15 @@ const rohin = [
    const childrenParent = new Map();
    
    childrenParent.set("goyalmeghs01@gmail.com",myra);
-   childrenParent.set("mohitsrivastava12@yahoo.co.in",siya);
+   childrenParent.set("mohitsrivastava12@yahoo.co.in",malav);
    childrenParent.set("mayank.kaushal123@gmail.com",sumay);
    childrenParent.set("swapnilpawar.ibm@gmail.com",shivansh);
    childrenParent.set("varshuu21@yahoo.co.in",ishaan);
    childrenParent.set("hdesai_78@hotmail.com",dhanvi);
    childrenParent.set("vishal.sharma2003@gmail.com",siya);
    childrenParent.set("neelamsgl@gmail.com",rohin);
+   childrenParent.set("deephpsharma@gmail.com",dia);
+   
    
 
 const [selectedName, setSelectedName] = useState([]);
