@@ -72,7 +72,7 @@ const rohin = [
    const childrenParent = new Map();
    
    childrenParent.set("goyalmeghs01@gmail.com",myra);
-   childrenParent.set("mohitsrivastava12@yahoo.co.in",malav);
+   childrenParent.set("mohitsrivastava12@yahoo.co.in",myra);
    childrenParent.set("mayank.kaushal123@gmail.com",sumay);
    childrenParent.set("swapnilpawar.ibm@gmail.com",shivansh);
    childrenParent.set("varshuu21@yahoo.co.in",ishaan);
@@ -262,7 +262,7 @@ const closeModal=()=> {
             const names=rowData.childrenNames.S.split(',');
             for (var i = 0; i < names.length; i++) {
               if(names[i] != selectedName && names[i].length>1){
-                toAdd=  names[i] + ',';
+                toAdd=  toAdd + names[i] + ',';
               }
             }
     
