@@ -26,7 +26,9 @@ function App({ signOut, user }) {
    });
 
    const malav = [
-    {value: 'Malav Srivastava',    text: 'Malav'   }
+    {value: 'Malav Srivastava',    text: 'Malav'   },
+    {value: 'Tiash Srivastava',    text: 'Tiash'   },
+
    
 ];
 const dia = [
@@ -56,6 +58,17 @@ const dhanvi = [
    
 ];
 
+const siya = [
+    {value: 'Siya Sharma',    text: 'Siya'   },
+    {value: 'Sara Sharma',    text: 'sara'   }
+   
+];
+
+const rohin = [
+    {value: 'Rohin Singhal',    text: 'Rohin'   }
+   
+];
+
    const childrenParent = new Map();
    
    childrenParent.set("goyalmeghs01@gmail.com",myra);
@@ -64,7 +77,8 @@ const dhanvi = [
    childrenParent.set("swapnilpawar.ibm@gmail.com",shivansh);
    childrenParent.set("varshuu21@yahoo.co.in",ishaan);
    childrenParent.set("hdesai_78@hotmail.com",dhanvi);
-   
+   childrenParent.set("vishal.sharma2003@gmail.com",siya);
+   childrenParent.set("neelamsgl@gmail.com",rohin);
    
 
 const [selectedName, setSelectedName] = useState([]);
@@ -323,7 +337,9 @@ const closeModal=()=> {
   })
       .then((response) => {
         console.log(response);
-        setSlots(response.data.Items);
+        const items = response.data.Items;
+        const sortedItems = items.sort((a, b) => a.dateOfEvent.S.localeCompare (b.dateOfEvent.S));
+        setSlots(sortedItems);
       })
       .catch((error) => {
         console.log(error);
@@ -338,7 +354,7 @@ const closeModal=()=> {
     if(childrenParent.get(user.attributes.email) !=undefined){
      setSelectedName(childrenParent.get(user.attributes.email)[0].value);
     }
-    res.sort((a, b) => a.day.S - b.day.S)
+    
   }, []);
 
 
@@ -421,7 +437,9 @@ const closeModal=()=> {
     <div style={{align: 'center'} }>
     <h1>Hello {user.attributes.name}</h1>
     <div>
-    {childrenParent.get(user.attributes.email) ?
+    
+
+    {(childrenParent.get(user.attributes.email) && childrenParent.get(user.attributes.email).length ==1) &&
        
           <label>
             Your enrolled child's name: <span style={{color:"darkorange"}}>{selectedName}</span>
@@ -430,10 +448,31 @@ const closeModal=()=> {
       
 
 
-      : 
+      }
+
+
+      {childrenParent.get(user.attributes.email) && childrenParent.get(user.attributes.email).length >1 &&
+       
+          <div className="select-container">
+          <label> Select your kid
+          <select  onChange={handleChange}>
+            {childrenParent.get(user.attributes.email).map((option) => (
+              <option value={option.value}>{option.text}</option>
+            ))}
+          </select>
+          </label>
+        </div>
+        
+      
+
+
+      }
+
+      {(childrenParent.get(user.attributes.email) === undefined || childrenParent.get(user.attributes.email).length < 1) &&
             <label style={{color:"orange"}}> Your email is not associated with any enrolled kid </label>
+          }
   
-}
+
 
   </div>
   
@@ -452,9 +491,9 @@ const closeModal=()=> {
       enableTopToolbar={false}
       options={{
         paging:true,
-        pageSize:6,       // make initial page size
+        pageSize:5,       // make initial page size
         emptyRowsWhenPaging: false,   // To avoid of having empty rows
-        pageSizeOptions:[6,12,20,50],    // rows selection options
+        pageSizeOptions:[5,10,20,50],    // rows selection options
         headerStyle: { color: 'blue' } ,
         titleStyle: { color: 'orange' } 
 
