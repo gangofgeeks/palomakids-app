@@ -72,7 +72,7 @@ const rohin = [
    const childrenParent = new Map();
    
    childrenParent.set("goyalmeghs01@gmail.com",myra);
-   childrenParent.set("mohitsrivastava12@yahoo.co.in",myra);
+   childrenParent.set("mohitsrivastava12@yahoo.co.in",malav);
    childrenParent.set("mayank.kaushal123@gmail.com",sumay);
    childrenParent.set("swapnilpawar.ibm@gmail.com",shivansh);
    childrenParent.set("varshuu21@yahoo.co.in",ishaan);
@@ -144,7 +144,7 @@ const [selectedName, setSelectedName] = useState([]);
           console.log("Selected name is:"+selectedName);
           toAdd=selectedName;
         }
-        else if((rowData.childrenNames.S).split(',').length>3){
+        else if((rowData.childrenNames.S).replace(/,\s*$/, "").split(',').length>3){
             setSuccess('');
           setError("All 4 slots already booked.");
           return;
@@ -160,7 +160,7 @@ const [selectedName, setSelectedName] = useState([]);
         
         else{
           console.log("All Added"+rowData.childrenNames.S+','+selectedName);
-          toAdd=rowData.childrenNames.S+','+selectedName;
+          toAdd=rowData.childrenNames.S.replace(/,\s*$/, "").split(',')+','+selectedName;
 
         }
 
