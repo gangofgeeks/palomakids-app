@@ -405,32 +405,32 @@ const closeModal=()=> {
         </tr>
           <br/>
           <tr>
-        <td style={{color:"blue"}}>Payment for slot </td> <td>{modalInput.names && 
+        <td style={{color:"blue"}}>Payment </td> <td>{modalInput.names && 
           modalInput.names.split(',').length>3 ?'$15':'$20'}</td>
         </tr>
-        <tr>
-        <td style={{color:"blue"}}>Children in slot </td> <td>{modalInput.names}</td>
-        </tr>
         <br/>
+        <tr>
+        <td style={{color:"blue"}}>In Slot</td> <td>{modalInput.names}</td>
+        </tr>
+       <br/>
         <tr rowSpan="2">
-        <td style={{color:"blue"}}>Slot Payent Done</td> <td>{modalInput.paidNames}</td>
+        <td style={{color:"blue"}}>Paid By</td> <td>{modalInput.paidNames}</td>
         </tr>
         
          <br/>
-         <br/>
+         
 
-          <tr rowSpan="2">
+          <tr>
           <td style={{color:"green"}}><button style={{color:"green"}} onClick={() => addData(rowData)}>Add to Slot</button></td>
           <td style={{color:"red"}}><button style={{color:"red"}} onClick={() => removeData(rowData)}>Remove from Slot</button></td>
+          <td><button onClick={closeModal}>close</button></td>
           </tr>
-          <br/>
+         
          
          
           </tbody>
           </table>
-          <div align="center">
-          <button onClick={closeModal}>close</button>
-          </div>
+
         </div>
       </Modal>
 
