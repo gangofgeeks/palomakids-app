@@ -160,7 +160,7 @@ const [selectedName, setSelectedName] = useState([]);
         
         else{
           console.log("All Added"+rowData.childrenNames.S+','+selectedName);
-          toAdd=rowData.childrenNames.S.replace(/,\s*$/, "").split(',')+','+selectedName;
+          toAdd=rowData.childrenNames.S.replace(/,\s*$/, "")+','+selectedName;
 
         }
 
@@ -219,7 +219,7 @@ const [selectedName, setSelectedName] = useState([]);
         
         else{
           console.log("All Added"+rowData.paidNames.S+', '+selectedName);
-          toAdd=rowData.paidNames.S+','+selectedName;
+          toAdd=rowData.paidNames.S.replace(/,\s*$/, "")+','+selectedName;
 
         }
 
@@ -265,6 +265,7 @@ const closeModal=()=> {
                 toAdd=  toAdd + names[i] + ',';
               }
             }
+            toAdd =toAdd.replace(/,\s*$/, "");
     
         }
         else{
