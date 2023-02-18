@@ -26,8 +26,8 @@ function App({ signOut, user }) {
    });
 
    const malav = [
-    {value: 'Malav Srivastava',    text: 'Malav'   },
-    {value: 'Tiash Srivastava',    text: 'Tiash'   },
+    {value: 'Malav Srivastava',    text: 'Malav'   }
+    
 
    
 ];
@@ -60,7 +60,7 @@ const dhanvi = [
 
 const siya = [
     {value: 'Siya Sharma',    text: 'Siya'   },
-    {value: 'Sara Sharma',    text: 'sara'   }
+    {value: 'Sara Sharma',    text: 'Sara'   }
    
 ];
 
