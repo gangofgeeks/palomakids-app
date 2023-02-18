@@ -72,7 +72,7 @@ const rohin = [
    const childrenParent = new Map();
    
    childrenParent.set("goyalmeghs01@gmail.com",myra);
-   childrenParent.set("mohitsrivastava12@yahoo.co.in",malav);
+   childrenParent.set("mohitsrivastava12@yahoo.co.in",siya);
    childrenParent.set("mayank.kaushal123@gmail.com",sumay);
    childrenParent.set("swapnilpawar.ibm@gmail.com",shivansh);
    childrenParent.set("varshuu21@yahoo.co.in",ishaan);
@@ -260,7 +260,7 @@ const closeModal=()=> {
             const names=rowData.childrenNames.S.split(',');
             for (var i = 0; i < names.length; i++) {
               if(names[i] != selectedName && names[i].length>1){
-                toAdd=  names[i] + ', ';
+                toAdd=  names[i] + ',';
               }
             }
     
@@ -432,7 +432,15 @@ const closeModal=()=> {
         </div>
       </Modal>
 
-      <img src={require('./basketball.jpg')} width="40%"/>
+       
+      <div>
+      <table><tr><td width="20px">
+    <img src={require('./basketball.jpg')} width="250px"/></td>
+      <td><span><p align="center" style={{color:"darkorange"}}>
+      Coach Name : Schwan Humes,   Contact Number(For Zelle) : 830-714-3486</p> </span> </td>
+      </tr>
+      </table>
+      </div>
 
             <div style={{color: 'red'}}>
       
@@ -463,8 +471,8 @@ const closeModal=()=> {
       {childrenParent.get(user.attributes.email) && childrenParent.get(user.attributes.email).length >1 &&
        
           <div className="select-container">
-          <label> Select your kid
-          <select  onChange={handleChange}>
+          <label> Select your child's name :
+          <select  style={{color:"darkorange"}} onChange={handleChange}>
             {childrenParent.get(user.attributes.email).map((option) => (
               <option value={option.value}>{option.text}</option>
             ))}
@@ -510,9 +518,7 @@ const closeModal=()=> {
       }}
       muiTableBodyRowProps={{ hover: false }} title='Basketball Lessons Schedule' />
 
-      <div>
-      <p>Coach Name - Schwan Humes, Contact Number - 830-714-3486(For Zelle)</p>
-      </div>
+      
      
       </div>
     
