@@ -15,7 +15,18 @@ function App({ signOut, user }) {
   const [res, setRes] = useState([]);
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState([]);
-  const [slots, setSlots] = useState([]);
+  const findPage=()=>{
+    let date_1 = new Date('02/20/2023');
+let date_2 = new Date();
+
+
+    let difference = date_2.getTime() - date_1.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    console.log("Returning page:"+Math.floor(TotalDays/7));
+    return Math.floor(TotalDays/7);
+   }
+  const [slots, setSlots] = useState({slot:[{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"}], initial:findPage()});
+   
    
    const [rowData, setRowData] = useState([]);
 
@@ -355,7 +366,7 @@ const closeModal=()=> {
         console.log(response);
         const items = response.data.Items;
         const sortedItems = items.sort((a, b) => a.dateOfEvent.S.localeCompare (b.dateOfEvent.S));
-        setSlots(sortedItems);
+        setSlots({slot:sortedItems});
       })
       .catch((error) => {
         console.log(error);
@@ -512,7 +523,7 @@ const closeModal=()=> {
     
      
 
-      <MaterialTable columns={columns} data={slots} enableColumnActions={false}
+      <MaterialTable columns={columns} data={slots.slot} enableColumnActions={false}
       enableColumnFilters={false}
       
       enableBottomToolbar={false}
@@ -523,7 +534,8 @@ const closeModal=()=> {
         emptyRowsWhenPaging: false,   // To avoid of having empty rows
         pageSizeOptions:[5,10,20,50],    // rows selection options
         headerStyle: { color: 'blue' } ,
-        titleStyle: { color: 'orange' } 
+        titleStyle: { color: 'orange' } ,
+        initialPage:slots.initial
 
 
       }}
