@@ -10,6 +10,10 @@ import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
 
+
+
+
+
 function App({ signOut, user }) {
   
   const [res, setRes] = useState([]);
@@ -17,15 +21,20 @@ function App({ signOut, user }) {
   const [success, setSuccess] = useState([]);
   const findPage=()=>{
     let date_1 = new Date('02/20/2023');
-let date_2 = new Date();
+    let date_2 = new Date();
 
 
     let difference = date_2.getTime() - date_1.getTime();
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
     console.log("Returning page:"+Math.floor(TotalDays/7));
-    return Math.floor(TotalDays/7);
+    return Math.floor(TotalDays/7)-2;
    }
-  const [slots, setSlots] = useState({slot:[{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"}], initial:findPage()});
+  const [slots, setSlots] = useState({slot:[{"a":"a"},{"a":"a"},{"a":"a"},
+    {"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},
+    {"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},
+{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},
+
+    {"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"},{"a":"a"}], initial:findPage()});
    
    
    const [rowData, setRowData] = useState([]);
@@ -85,6 +94,11 @@ const atharv = [
    
 ];
 
+const manveer = [
+    {value: 'Manveer',    text: 'Manveer'   }
+   
+];
+
    const childrenParent = new Map();
    
    childrenParent.set("goyalmeghs01@gmail.com",myra);
@@ -97,6 +111,8 @@ const atharv = [
    childrenParent.set("neelamsgl@gmail.com",rohin);
    childrenParent.set("deephpsharma@gmail.com",dia);
    childrenParent.set("bhavya_dn@yahoo.com",atharv);
+   
+   childrenParent.set("click4ramk@gmail.com",manveer);
 
    
    
