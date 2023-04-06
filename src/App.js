@@ -98,6 +98,14 @@ const manveer = [
     {value: 'Manveer',    text: 'Manveer'   }
    
 ];
+const neel = [
+    {value: 'Neel',    text: 'Neel'   }
+   
+];
+const arnav = [
+    {value: 'Arnav',    text: 'Arnav'   }
+   
+];
 
    const childrenParent = new Map();
    
@@ -113,6 +121,10 @@ const manveer = [
    childrenParent.set("bhavya_dn@yahoo.com",atharv);
    
    childrenParent.set("click4ramk@gmail.com",manveer);
+   childrenParent.set("chitradeepin@gmail.com",neel);
+   childrenParent.set("pankajkverma@gmail.com",arnav);
+
+   
 
    
    
